@@ -59,11 +59,11 @@ public class RNReactNativeSharedGroupPreferencesModule extends ReactContextBaseJ
       editor.putString(key, value);
       editor.apply();
     } else {
-      File extStore = Environment.getExternalStorageDirectory();
+      File dataStore = reactContext.getFilesDir();
       String fileName = "data.json";
 
       try {
-        File dir = new File(extStore.getAbsolutePath() + "/" + appGroup + "/");
+        File dir = new File(dataStore.getAbsolutePath() + "/" + appGroup + "/");
         dir.mkdir();
         File myFile = new File(dir, fileName);
         myFile.createNewFile();
@@ -92,9 +92,9 @@ public class RNReactNativeSharedGroupPreferencesModule extends ReactContextBaseJ
       String value = preferences.getString(key, null);
       callback.invoke(null, value);
     } else {
-      File extStore = Environment.getExternalStorageDirectory();
+      File dataStore = reactContext.getFilesDir();
       String fileName = "data.json";
-      String path = extStore.getAbsolutePath() + "/" + appGroup + "/" + fileName;
+      String path = dataStore.getAbsolutePath() + "/" + appGroup + "/" + fileName;
 
       String s = "";
       String fileContent = "";
